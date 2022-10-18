@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .content{
+        font-family: -apple-system,BlinkMacSystemFont,Helvetica Neue,PingFang SC,Microsoft YaHei,Source Han Sans SC,Noto Sans CJK SC,WenQuanYi Micro Hei,sans-serif;
+        font-size: 15px;
+        color: #121212;
+        white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+<div class="content">
+
+</div>
+<script>
+  fetch('http://lc-RkUUB80o.cn-n1.lcfile.com/jtPVtf0VhDNKNOF4pSMm3Czl9FcJxGMY/%E4%B8%89%E4%BD%93.txt',{
+    mode:'cors'
+  })
+    .then(response => response.text()).then(res => {
+    document.querySelector('.content').innerHTML = res
+    // console.log(res);
+  })
+</script>
+
+</body>
+</html>
