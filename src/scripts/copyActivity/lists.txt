@@ -1,0 +1,16 @@
+[
+  'hecaiyun_ac1',          'caiyunActConePage',
+  'caiyunActivePage',      'hecaiyunPage',
+  'jxspring',              'caiyunMcloudActive',
+  'caiyunActivity',        'clientDL',
+  'cyActive',              'CaiYunActive',
+  'fjllmfl',               'xjPrizeActive',
+  'caiyunBill',            'hljgift',
+  'hnUpLoad',              'jiangxiorder',
+  'caiyunorder',           'gdvipmonthorder',
+  'gd1000G5G',             'gd4T10G',
+  'gd400G2G',              'gd4T2G',
+  'gd4T5G',                'gdxiarinew',
+  'caiyunOfficialAccount', 'caiyunEventPage',
+  'taskTemplate',          'hnhnyact'
+]

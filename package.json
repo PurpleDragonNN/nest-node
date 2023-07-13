@@ -6,6 +6,8 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
+    "openBrowser": "msedge.exe --remote-debugging-port=9222 --user-data-dir=\"D:\\project\\ChromeProfile\"",
+    "pkg:win": "pkg . -t node14-win-x64 -o app-win --debug",
     "prebuild": "rimraf dist",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -20,16 +22,29 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
+  "bin": "dist/main.js",
+  "pkg": {
+    "assets": [
+      "node_modules/swagger-ui-dist",
+      "node_modules/swagger-ui-express",
+      "dist/migrations"
+    ]
+  },
+
   "dependencies": {
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
     "@nestjs/mongoose": "^9.2.0",
     "@nestjs/platform-express": "^9.0.0",
     "adm-zip": "^0.5.9",
+    "axios": "^1.4.0",
+    "mkdirp": "^3.0.0",
     "mongoose": "^6.5.2",
+    "node-xlsx": "^0.21.2",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^7.2.0"
+    "rxjs": "^7.2.0",
+    "selenium-webdriver": "^4.10.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.0.0",
