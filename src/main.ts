@@ -1,9 +1,10 @@
 import { NestFactory } from '@nestjs/core';
 import copyActivity from './scripts/copyActivity/copyActivity';
+import newCopyActivity from './scripts/copyActivity/newCopyActivity';
 import { AppModule } from './app.module';
 import { CaptchaModule } from './server/captcha/captcha.module';
 import { reqCaptch } from './scripts/seleniumScript/request';
-import { example } from './scripts/seleniumScript';
+import { scriptEntry } from './scripts/seleniumScript';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -18,8 +19,8 @@ async function captchaEntry() {
 // captchaEntry();
 
 // 归档复制文件
-// copyActivity.entry();
+newCopyActivity.entry();
 
 // reqCaptch()
 
-example()
+// scriptEntry()

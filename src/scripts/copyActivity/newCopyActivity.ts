@@ -8,11 +8,11 @@ const { mkdirp } = require('mkdirp')
 // 黑名单, 该目录下不进行复制
 const blackList = ['2023年Q1']
 // targetParentPath的父级目录，如传入此字段，targetParentPath将被重写
-const targetGrandparentPath = 'D:\\开发\\归档\\2023年\\'
+const targetGrandparentPath = 'D:\\开发\\归档2024\\2024年Q1\\'
 // const targetGrandparentPath = '';
 // 需要写入文件的活动列表文件夹地址
 // let targetParentPath = 'D:\\开发\\结算材料\\%e8%bf%90%e8%90%a5%e7%a0%94%e5%8f%91%e9%83%a8%e7%bb%93%e7%ae%97%e6%9d%90%e6%96%99\\2022年第四批订单10.1-12.31\\分省\\需求结果';
-let targetParentPath = 'D:\\开发\\归档\\2023年\\20230729版本'
+let targetParentPath = 'D:\\开发\\归档2024\\2024年Q1\\1月1日 版本'
 targetParentPath += '\\'
 
 const categoryData = JSON.parse(
@@ -39,16 +39,24 @@ class copyActivity {
         targetParentPath = targetGrandparentPath + item + '\\'
         console.log(targetParentPath)
         await this.main()
+        if (Object.keys(successLog).length) {
+          console.log(
+            '以下活动复制成功: ' + Object.keys(successLog).length,
+            successLog,
+          )
+        }
+        // console.log('以下活动已存在: ' + Object.keys(failLog).length, failLog)
       }
     } else {
       await this.main()
+      if (Object.keys(successLog).length) {
+        console.log(
+          '以下活动复制成功: ' + Object.keys(successLog).length,
+          successLog,
+        )
+      }
+      // console.log('以下活动已存在: ' + Object.keys(failLog).length, failLog)
     }
-
-    console.log(
-      '以下活动复制成功: ' + Object.keys(successLog).length,
-      successLog,
-    )
-    console.log('以下活动已存在: ' + Object.keys(failLog).length, failLog)
   }
 
   // 创建活动关联目录json文件，仅首次使用脚本时调用该方法生成目录文件
@@ -103,7 +111,8 @@ class copyActivity {
     })
     if (Object.keys(fail).length) {
       console.log(
-        '以下目录匹配失败,脚本已终止: ' + Object.keys(fail).length,
+        '************以下目录匹配失败,脚本已终止: *****************' +
+          Object.keys(fail).length,
         fail,
       )
       return
@@ -123,7 +132,7 @@ class copyActivity {
       const itemDir = fs.readdirSync(targetParentPath + key)
       if (itemDir.includes('源代码')) {
         await handleJieSuan(key, value)
-      } else if (itemDir.includes('02需求结果')) {
+      } else if (itemDir.includes('需求结果')) {
         await handleGuiDang(key, value)
       } else {
         console.log('未找到以下活动的默认目录：', key)
@@ -160,9 +169,12 @@ async function handleGuiDang(key, value) {
   let originPath = ''
   let targetPath = ''
   originPath = distPath + value
-  targetPath = targetParentPath + key + '\\02需求结果\\研发'
+  targetPath = targetParentPath + key + '\\需求结果\\研发'
   if (fs.existsSync(targetPath)) {
-    if (fs.readdirSync(targetPath + '\\前端代码').length !== 0) {
+    if (
+      fs.existsSync(targetPath + '\\前端') &&
+      fs.readdirSync(targetPath + '\\前端').length !== 0
+    ) {
       failLog[key] = ''
       // 如果已存在则跳过本次循环
       return
@@ -171,8 +183,8 @@ async function handleGuiDang(key, value) {
     console.log('未找到以下活动的默认目录：', key)
     return
   }
-  mkdirp.sync(targetPath + '\\前端代码\\' + value)
-  targetPath = targetPath + '\\前端代码\\' + value
+  mkdirp.sync(targetPath + '\\前端\\' + value)
+  targetPath = targetPath + '\\前端\\' + value
 
   // 复制目录
   await cp(originPath, targetPath, { recursive: true })

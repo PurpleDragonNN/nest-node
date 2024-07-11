@@ -6,7 +6,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "openBrowser": "msedge.exe --remote-debugging-port=9222 --user-data-dir=\"D:\\project\\ChromeProfile\"",
+    "openBrowser": "msedge.exe --remote-debugging-port=9222 --user-data-dir=\"D:\\project\\ChromeProfile\" ",
     "pkg:win": "pkg . -t node14-win-x64 -o app-win --debug",
     "prebuild": "rimraf dist",
     "build": "nest build",
