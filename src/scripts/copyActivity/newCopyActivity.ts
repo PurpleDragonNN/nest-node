@@ -8,7 +8,7 @@ const { mkdirp } = require('mkdirp')
 // 黑名单, 该目录下不进行复制
 const blackList = ['2023年Q1']
 // targetParentPath的父级目录，如传入此字段，targetParentPath将被重写
-const targetGrandparentPath = 'D:\\开发\\归档2024\\2024年Q1\\'
+const targetGrandparentPath = 'D:\\开发\\归档2024\\2024年Q3\\'
 // const targetGrandparentPath = '';
 // 需要写入文件的活动列表文件夹地址
 // let targetParentPath = 'D:\\开发\\结算材料\\%e8%bf%90%e8%90%a5%e7%a0%94%e5%8f%91%e9%83%a8%e7%bb%93%e7%ae%97%e6%9d%90%e6%96%99\\2022年第四批订单10.1-12.31\\分省\\需求结果';
